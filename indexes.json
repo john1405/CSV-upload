@@ -1,0 +1,96 @@
+{
+    "database": "imdb_database",
+    "collections": [
+      {
+        "name": "movies_collection",
+        "description": "Stores information about movies or shows, each document representing a movie or show.",
+        "fields": [
+          {
+            "name": "_id",
+            "type": "ObjectId",
+            "description": "Unique identifier for each movie."
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "description": "Title of the movie or show."
+          },
+          {
+            "name": "release_date",
+            "type": "date",
+            "description": "Release date of the movie or show."
+          },
+          {
+            "name": "duration",
+            "type": "int",
+            "description": "Duration of the movie or show in minutes."
+          },
+          {
+            "name": "genre",
+            "type": "string",
+            "description": "Genre of the movie or show."
+          },
+          {
+            "name": "date_added",
+            "type": "date",
+            "description": "Date when the movie or show was added to the database."
+          }
+        ],
+        "indexes": [
+          {
+            "fields": ["date_added"],
+            "type": "ascending",
+            "description": "Index on date added for sorting movies by the date they were added."
+          },
+          {
+            "fields": ["release_date"],
+            "type": "ascending",
+            "description": "Index on release date for sorting movies by their release dates."
+          },
+          {
+            "fields": ["duration"],
+            "type": "ascending",
+            "description": "Index on duration for sorting movies by their durations."
+          }
+        ]
+      },
+      {
+        "name": "uploads_collection",
+        "description": "Tracks the progress of each CSV file upload, with one document per upload.",
+        "fields": [
+          {
+            "name": "_id",
+            "type": "string",
+            "description": "Unique identifier for each upload, using the Celery task ID."
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "description": "Status of the upload, e.g., 'processing', 'completed', or 'failed'."
+          },
+          {
+            "name": "progress",
+            "type": "int",
+            "description": "Progress percentage of the CSV upload, ranging from 0 to 100."
+          },
+          {
+            "name": "timestamp",
+            "type": "date",
+            "description": "Timestamp of when the upload was initiated."
+          }
+        ],
+        "indexes": [
+          {
+            "fields": ["status"],
+            "type": "ascending",
+            "description": "Index on status to quickly retrieve uploads by their status."
+          },
+          {
+            "fields": ["timestamp"],
+            "type": "descending",
+            "description": "Index on timestamp to retrieve recent uploads quickly."
+          }
+        ]
+      }
+    ]
+  } 
