@@ -32,6 +32,7 @@ This project allows users to upload large CSV files containing movie or show dat
 ```bash
 git clone https://github.com/your-username/imdb-csv-upload-system.git
 cd imdb-csv-upload-system
+```
 
 ### 2. install dependency
   - pip install -r requirements.txt
